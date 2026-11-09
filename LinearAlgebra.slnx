@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="LinearAlgebra/LinearAlgebra.csproj" />
+  <Project Path="LinearAlgebra.Tests/LinearAlgebra.Tests.csproj" />
+  <Project Path="VectorDemo/VectorDemo.csproj" />
+</Solution>
