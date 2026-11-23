@@ -3,34 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using LinearAlgebra;
 
-IMathVector a = new MathVector(new double[] { 3, 4 });
-IMathVector b = new MathVector(new List<double> { 1, 2 });
+IMathVector a = new MathVector(new double[] { -7.5, 12, 4.5 });
+IMathVector b = new MathVector(new List<double> { 2.5, -3, 1.5 });
 IMathVector copy = new MathVector(a);
+double number = -2.5;
 
-Show("Вектор a из массива", a);
-Show("Вектор b из списка", b);
-copy[0] = 10;
-Show("Копия a после изменения первой координаты", copy);
+Console.WriteLine($"Вектор a из массива = ({string.Join("; ", a.Cast<double>())})");
+Console.WriteLine($"Вектор b из списка = ({string.Join("; ", b.Cast<double>())})");
+copy[0] = 18.75;
+Console.WriteLine($"Копия a после изменения первой координаты = ({string.Join("; ", copy.Cast<double>())})");
 Console.WriteLine($"У исходного a первая координата равна {a[0]}");
-Console.WriteLine($"Размерность a = {a.Dimensions}, длина a = {a.Length}");
+Console.WriteLine($"Размерность a = {a.Dimensions}, длина a = {a.Length:0.###}");
+Console.WriteLine($"Число для операций = {number}");
 
-Show("a.SumNumber(2)", a.SumNumber(2));
-Show("a.MultiplyNumber(2)", a.MultiplyNumber(2));
-Show("a.DivideNumber(2)", a.DivideNumber(2));
-Show("a.Sum(b)", a.Sum(b));
-Show("a.Multiply(b)", a.Multiply(b));
-Show("a.Divide(b)", a.Divide(b));
+Console.WriteLine($"a.SumNumber({number}) = ({string.Join("; ", a.SumNumber(number).Cast<double>())})");
+Console.WriteLine($"a.MultiplyNumber({number}) = ({string.Join("; ", a.MultiplyNumber(number).Cast<double>())})");
+Console.WriteLine($"a.DivideNumber({number}) = ({string.Join("; ", a.DivideNumber(number).Cast<double>())})");
+Console.WriteLine($"a.Sum(b) = ({string.Join("; ", a.Sum(b).Cast<double>())})");
+Console.WriteLine($"a.Multiply(b) = ({string.Join("; ", a.Multiply(b).Cast<double>())})");
+Console.WriteLine($"a.Divide(b) = ({string.Join("; ", a.Divide(b).Cast<double>())})");
 Console.WriteLine($"a.ScalarMultiply(b) = {a.ScalarMultiply(b)}");
 Console.WriteLine($"a.CalcDistance(b) = {a.CalcDistance(b):0.###}");
 
-Show("a + 2", (MathVector)a + 2);
-Show("a - 2", (MathVector)a - 2);
-Show("a * 2", (MathVector)a * 2);
-Show("a / 2", (MathVector)a / 2);
-Show("a + b", (MathVector)a + b);
-Show("a - b", (MathVector)a - b);
-Show("a * b", (MathVector)a * b);
-Show("a / b", (MathVector)a / b);
+Console.WriteLine($"a + ({number}) = ({string.Join("; ", ((MathVector)a + number).Cast<double>())})");
+Console.WriteLine($"a - ({number}) = ({string.Join("; ", ((MathVector)a - number).Cast<double>())})");
+Console.WriteLine($"a * ({number}) = ({string.Join("; ", ((MathVector)a * number).Cast<double>())})");
+Console.WriteLine($"a / ({number}) = ({string.Join("; ", ((MathVector)a / number).Cast<double>())})");
+Console.WriteLine($"a + b = ({string.Join("; ", ((MathVector)a + b).Cast<double>())})");
+Console.WriteLine($"a - b = ({string.Join("; ", ((MathVector)a - b).Cast<double>())})");
+Console.WriteLine($"a * b = ({string.Join("; ", ((MathVector)a * b).Cast<double>())})");
+Console.WriteLine($"a / b = ({string.Join("; ", ((MathVector)a / b).Cast<double>())})");
 Console.WriteLine($"a % b = {(MathVector)a % b}");
 
 try
@@ -40,9 +42,4 @@ try
 catch (DivideByZeroException error)
 {
     Console.WriteLine($"Попытка деления на ноль: {error.Message}");
-}
-
-static void Show(string label, IMathVector vector)
-{
-    Console.WriteLine($"{label} = ({string.Join("; ", vector.Cast<double>())})");
 }
